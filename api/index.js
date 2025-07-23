@@ -11,7 +11,7 @@ app.use(express.json({
 
 const PUBLIC_KEY = process.env.PUBLIC_KEY;
 
-app.post('/api', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
+app.post('/', verifyKeyMiddleware(PUBLIC_KEY), async (req, res) => {
   const interaction = req.body;
 
   if (interaction.type === InteractionType.PING) {
