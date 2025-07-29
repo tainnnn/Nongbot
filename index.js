@@ -7,14 +7,14 @@ const clientId = process.env.CLIENT_ID;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once('ready', () => {
-  console.log(`✅ Logged in as ${client.user.tag}`);
+  console.log(`Logged in as ${client.user.tag}`);
 });
 
 client.on('interactionCreate', async interaction => {
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === 'ping') {
-    await interaction.reply('🏓 Pong!');
+    await interaction.reply('Pong!');
   }
 
   if (interaction.commandName === 'an') {
@@ -36,7 +36,7 @@ client.on('interactionCreate', async interaction => {
 
 client.login(token);
 
-// ✅ Register Global Slash Commands (ช้า ~1 ชั่วโมง แต่ใช้ได้ทุกเซิร์ฟเวอร์)
+//Register Global Slash Commands
 const commands = [
   new SlashCommandBuilder()
     .setName('ping')
@@ -63,13 +63,13 @@ const rest = new REST({ version: '10' }).setToken(token);
 
 (async () => {
   try {
-    console.log('🌍 Registering global slash commands...');
+    console.log('Registering global slash commands...');
     await rest.put(
       Routes.applicationCommands(clientId),
       { body: commands },
     );
-    console.log('✅ Global slash commands registered.');
+    console.log('Global slash commands registered.');
   } catch (error) {
-    console.error('❌ Error registering commands:', error);
+    console.error('Error registering commands:', error);
   }
 })();
